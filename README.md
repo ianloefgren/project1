@@ -45,4 +45,4 @@ This program should run on all operating systems.
 Ates Goral, for code to generate a string of random characters.
 
 #Open Issues/Bugs
-None at this time.
+See the issues tab for open bugs and feature requests.
