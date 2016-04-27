@@ -30,7 +30,7 @@ Type the following commands in the terminal (make sure you are in the folder con
 - ./projectDriver
 
 # Dependencies
-This project requires the standard c library <random>, as well as c library <time.h>, which both are standard and included with c and c++ compilers.
+This project requires the standard c library random, as well as c library time.h, which both are standard and included with c and c++ compilers.
 
 # System Requirements
 This program should run on all operating systems.
