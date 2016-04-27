@@ -20,7 +20,8 @@ public:
 	~Account();
 	void setUsername(std::string name);
 	void setPass(std::string pass);
-	//void setPointers(Account* prev,Account* next);
+	void setMessage(std::string input);
+	void setSalt(std::string saltInput);
 	void printInfo();
 	std::string getPassword();
 	std::string getUsername();

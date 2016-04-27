@@ -51,7 +51,7 @@ string PassTable::passHash(string saltyPassword) //hash function to hash salted 
 		else
 			saltyPassword[i] = saltyPassword[i] + 3;
 	}
-	cout << saltyPassword << endl;
+	//cout << saltyPassword << endl;
 	return saltyPassword;
 }
 

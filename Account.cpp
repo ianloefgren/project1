@@ -45,8 +45,9 @@ void Account::setPass(string pass)
 
 void Account::printInfo()
 {
-	cout << user_name << endl;
-	cout << hashed_password << endl;
+	cout << "User: " << user_name << endl;
+	cout << "Hashed password: " << hashed_password << endl;
+	cout << "Stored message: " << message << endl;
 }
 
 string Account::getUsername()
@@ -78,4 +79,14 @@ void Account::logout()
 bool Account::loginStatus()
 {
 	return logged_in;
+}
+
+void Account::setMessage(string input)
+{
+	message = input;
+}
+
+void Account::setSalt(string saltInput)
+{
+	salt = saltInput;
 }

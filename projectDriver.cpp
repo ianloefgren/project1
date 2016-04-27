@@ -24,10 +24,13 @@ int main()
 	cout << "~~~~~~~~~~ Welcome ~~~~~~~~~" << endl;
 	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 
+	cout << "\nType 'quit' to quit the program" << endl;
+
 	string input = "";
 	while (input!="quit")
 	{
-		cout << "\n1. Log in" << endl;
+		cout << "\n====== Main Menu ======" << endl;
+		cout << "1. Log in" << endl;
 		cout << "2. Create a new account" << endl;
 
 		getline(cin,input);
@@ -44,35 +47,57 @@ int main()
 
 			if(userLogin!=NULL)
 			{
-				cout << "logged in" << endl;
-				userLogin->printInfo();
+				cout << "\nLogged in successfully!" << endl;
+				//userLogin->printInfo();
 
- 				while(input!="3")
+ 				while(input!="4")
  				{	
  					cout << "\nAccount Options" << endl;
  					cout << "---------------" << endl;
  					cout << "1. Change password" << endl;
  					cout << "2. Edit message" << endl;
- 					cout << "3. Logout" << endl;
+ 					cout << "3. Print user info" << endl;
+ 					cout << "4. Logout" << endl;
 					getline(cin,input);
 
 					if(input=="1")
 					{
-						
+						string password = "0";
+						string passwordConfirm = "-1";
+
+						cout << "\nEnter new password: ";
+						getline(cin,password);
+
+						while(password!=passwordConfirm)
+						{
+							cout << "Please confirm new password: ";
+							getline(cin,passwordConfirm);	
+						}
+
+						string salt = pass.getSalt();
+						string hashedPass = pass.encrypt(passwordConfirm,salt);
+
+						userLogin->setSalt(salt);
+						userLogin->setPass(hashedPass);
+
 					}
 					else if(input=="2")
 					{
-
+						cout << "Enter new message: ";
+						getline(cin,input);
+						userLogin->setMessage(input);
 					}
 					else if(input=="3")
+					{
+						userLogin->printInfo();
+					}
+					else if(input=="4")
 					{
 						userLogin->logout();
 						cout << "Logged out successfully!" << endl;
 					}
 				}	
-
 			}
-
 		}
 		else if(input == "2")
 		{

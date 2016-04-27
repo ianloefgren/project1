@@ -93,7 +93,10 @@ Account* HashTable::login(string user, string password)
 			return foundUser; //return user account to log in
 		}
 		else
+		{
+			cout << "Incorrect username or password." << endl;	
 			return NULL;
+		}	
 	}
 	else
 		return NULL;
