@@ -8,7 +8,7 @@ private:
 	std::string user_name;
 	std::string hashed_password;
 	std::string salt;
-	int number;
+	std::string message;
 	bool logged_in;
 
 public:

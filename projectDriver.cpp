@@ -46,6 +46,31 @@ int main()
 			{
 				cout << "logged in" << endl;
 				userLogin->printInfo();
+
+ 				while(input!="3")
+ 				{	
+ 					cout << "\nAccount Options" << endl;
+ 					cout << "---------------" << endl;
+ 					cout << "1. Change password" << endl;
+ 					cout << "2. Edit message" << endl;
+ 					cout << "3. Logout" << endl;
+					getline(cin,input);
+
+					if(input=="1")
+					{
+						
+					}
+					else if(input=="2")
+					{
+
+					}
+					else if(input=="3")
+					{
+						userLogin->logout();
+						cout << "Logged out successfully!" << endl;
+					}
+				}	
+
 			}
 
 		}

@@ -1,11 +1,12 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 #include <string>
+#include "PassTable.h"
 #include "Account.h"
 
 //this should be a class for proper encapsulation
 
-class HashTable
+class HashTable : public PassTable
 {
 	public:
 		HashTable();
