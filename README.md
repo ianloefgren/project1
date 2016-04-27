@@ -31,8 +31,8 @@ Type the following commands in the terminal (make sure you are in the folder con
 - g++ -o projectDriver PassTable.o Account.o HashTable.o projectDriver.o
 - ./projectDriver
 
-* If you are having trouble compliling or running the code please email me!*
-* ian.loefgren@colorado.edu*
+!!!!If you are having trouble compliling or running the code please email me!!!!
+      ian.loefgren@colorado.edu*
 
 # Dependencies
 This project requires the standard c library random, as well as c library time.h, which both are standard and included with c and c++ compilers.
