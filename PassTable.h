@@ -1,16 +1,16 @@
 #ifndef PASSTABLE_H
 #define PASSTABLE_H
-#include <string>
 
 class PassTable
 {
 	public:
 		PassTable();
 		~PassTable();
-		std::string encrypt(std::string password);
+		std::string encrypt(std::string password,std::string salt);
+		std::string getSalt();
+		std::string passHash(std::string);
 	private:
 		std::string saltGenerator();
-		std::string passHash(std::string);
 };
 
-#endif // PASHTABLE_H
+#endif // PASSTABLE_H

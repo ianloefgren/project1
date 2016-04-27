@@ -8,16 +8,17 @@
 */
 
 #include <iostream>
-//#include "HashTable.h"
-//#include "PassTable.h"
-//#include "Account.h"
+#include "Account.h"
+#include "PassTable.h"
+#include "HashTable.h"
+
 
 using namespace std;
 
 int main()
 {
-	//PassTable pass;
-	//HashTable hash;
+	PassTable pass;
+	HashTable hash;
 
 	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 	cout << "~~~~~~~~~~ Welcome ~~~~~~~~~" << endl;
@@ -33,35 +34,51 @@ int main()
 
 		if (input=="1")
 		{
-			cout << "Not yet operational." << endl;
+			cout << "Please enter username and password:" << endl;
+			string input_username = "";
+			string input_password = "";
+			getline(cin,input_username);
+			getline(cin,input_password);
+
+			Account* userLogin = hash.login(input_username,input_password);
+
+			if(userLogin!=NULL)
+			{
+				cout << "logged in" << endl;
+				userLogin->printInfo();
+			}
+
 		}
 		else if(input == "2")
 		{
 			string username = "0";
 			string usernameConfirm = "-1";
 
-			cout << "Enter desired username: "; //consider exception handling
+			cout << "\nEnter desired username: "; //consider exception handling
 			getline(cin,username);
 			//CHECK IF USERNAME ALREADY EXISTS IN DATABASE <- ADD FEATURE
 			while(username!=usernameConfirm)
 			{
-				cout << "\nPlease confirm username: ";
+				cout << "Please confirm username: ";
 				getline(cin,usernameConfirm);
 			}
 			
 			string password = "0";
 			string passwordConfirm = "-1";
 
-			cout << "Enter password:";
+			cout << "\nEnter password: ";
 			getline(cin,password);
 
 			while(password!=passwordConfirm)
 			{
-				cout << "Please confirm password" << endl;
+				cout << "Please confirm password: ";
 				getline(cin,passwordConfirm);	
 			}
 
-			//string hashedPass = pass.encrypt(passwordConfirm);
+			string salt = pass.getSalt();
+			string hashedPass = pass.encrypt(passwordConfirm,salt);
+
+			hash.addUser(usernameConfirm,hashedPass,salt); //DONT FORGET TO CHANGE THIS TO HASHED WHEN FUNCITONING
 
 
 

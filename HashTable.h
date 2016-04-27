@@ -12,10 +12,10 @@ class HashTable
 		~HashTable();
 		void printUserInfo();
 		void printDatabase();
-		bool login(std::string user, std::string password);
-		void addUser(std::string name,std::string password);
+		Account* login(std::string user, std::string password);
+		void addUser(std::string name,std::string password,std::string salt);
 		void deleteUser(std::string name);
-		void findUser(std::string name);
+		Account* findUser(std::string name);
 	private:
 		int hashSum(std::string x, int s);
 		int tableSize;

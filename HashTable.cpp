@@ -7,6 +7,8 @@
 
 #include <iostream>
 #include <string>
+#include "Account.h"
+#include "PassTable.h"
 #include "HashTable.h"
 
 using namespace std;
@@ -34,11 +36,11 @@ int HashTable::hashSum(string username, int tableSize)
 	return sum; //return value as index of hash table
 }
 
-void HashTable::addUser(string name, string hashed_password)
+void HashTable::addUser(string name, string hashed_password,string salt)
 {
 	int tableIndex = hashSum(name,tableSize); //compute value of index to store new user 
 
-	Account *newAccount = new Account(name,hashed_password); //create new instance of Account
+	Account *newAccount = new Account(name,hashed_password,salt); //create new instance of Account
 	if (hashTable[tableIndex]==NULL) //if no elements at index
 		hashTable[tableIndex] = newAccount;
 	else
@@ -53,26 +55,48 @@ void HashTable::addUser(string name, string hashed_password)
 	}
 }
 
-void HashTable::findUser(string name)
+Account* HashTable::findUser(string name)
 {
 	int index = hashSum(name,tableSize); //find index
+	//cout << index << endl;
 	bool notFound = true; //flag for if hash table is empty
 	Account *tmp = hashTable[index];
 
 	while(tmp!=NULL && notFound) //find element
 	{
-		if (tmp->title == name)
+		//cout << tmp->getUsername() << endl;
+		if (tmp->getUsername() == name)
 			notFound = false;
 		else
 			tmp = tmp->next;
 	}
 
 	if (notFound)
-		cout << "not found" << endl;
+	{
+		cout << "Username not found." << endl;
+		return NULL;
+	}	
 	else
 	{
-		
+		return tmp;
 	}
+}
+
+Account* HashTable::login(string user, string password)
+{
+	Account* foundUser = findUser(user); //find user
+	string hashed = passHash(password.append(foundUser->getSalt())); //hash inputted password with salt
+	if(foundUser!=NULL)
+	{
+		if(hashed == foundUser->getPassword()) //if passwords match
+		{
+			return foundUser; //return user account to log in
+		}
+		else
+			return NULL;
+	}
+	else
+		return NULL;
 }
 
 

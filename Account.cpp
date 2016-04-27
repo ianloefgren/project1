@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <string>
+#include "PassTable.h"
 #include "Account.h"
 
 using namespace std;
@@ -19,10 +20,11 @@ Account::Account()
 	prev = NULL;
 }
 
-Account::Account(string in_name,string in_password)
+Account::Account(string in_name,string in_password,string in_salt)
 {
 	user_name = in_name;
 	hashed_password = in_password;
+	salt = in_salt;
 	next = NULL;
 	prev = NULL;
 }
@@ -42,4 +44,38 @@ void Account::setPass(string pass)
 }
 
 void Account::printInfo()
-{}	
+{
+	cout << user_name << endl;
+	cout << hashed_password << endl;
+}
+
+string Account::getUsername()
+{
+	return user_name;
+}
+
+string Account::getPassword()
+{
+	return hashed_password;
+}
+
+string Account::getSalt()
+{
+	return salt;
+}
+
+void Account::login(bool loginPermission)
+{
+	if(loginPermission)
+		logged_in = true;
+}
+
+void Account::logout()
+{
+	logged_in = false;
+}
+
+bool Account::loginStatus()
+{
+	return logged_in;
+}
