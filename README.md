@@ -12,20 +12,22 @@ A hash function for passwords is very similar to the hash function we used for o
 
 #  How To Run
 1) Clone the project repository to a directory on your computer, or download the files manually.
+
 2) Check if your system has a copy of make by changing directory into the project folder, and running the command "make" (no quotes) in a terminal to use the included makefile.
   - If this does not work, each file will have to be manually compiled and linked. (see end of section)
   - Alternatively compile and run using your favorite IDE, such as codeblocks.
+
 3) Run the created excecutable.
 
 Manually compiling and linking files:
 Type the following commands in the terminal (make sure you are in the folder containing the code!)
 
-g++ -c PassTable.cpp
-g++ -c Account.cpp
-g++ -c HashTable.cpp
-g++ -c projectDriver.cpp
-g++ -o projectDriver PassTable.o Account.o HashTable.o projectDriver.o
-./projectDriver
+- g++ -c PassTable.cpp
+- g++ -c Account.cpp
+- g++ -c HashTable.cpp
+- g++ -c projectDriver.cpp
+- g++ -o projectDriver PassTable.o Account.o HashTable.o projectDriver.o
+- ./projectDriver
 
 # Dependencies
 This project requires the standard c library <random>, as well as c library <time.h>, which both are standard and included with c and c++ compilers.
