@@ -10,6 +10,8 @@ This project is a basic database that is constructed using a hash table. The use
 # Concept
 A hash function for passwords is very similar to the hash function we used for our hash table homework assignment, differing in that a password hashing function outputs a string of chracters equal in length to the inputted string, instead of an index. The hash function will always generate the same output for the same input. This would make is easy to break in if the attacker knew the hashing function. This is the purpose of the salt generator. A salt is a random, unique string of characters that is appended to the plain-text password, before all of it is hashed. This means an attacker would have to know both the hashing function and the salt, instead of just hashing common passwords and trying them.
 
+For more information, visit: https://crackstation.net/hashing-security.htm
+
 #  How To Run
 1) Clone the project repository to a directory on your computer, or download the files manually.
 
