@@ -12,8 +12,11 @@
 #include "PassTable.h"
 #include "HashTable.h"
 
+#include <termios.h>
+#include <unistd.h>
 
 using namespace std;
+
 
 int main()
 {
@@ -41,7 +44,18 @@ int main()
 			string input_username = "";
 			string input_password = "";
 			getline(cin,input_username);
+			
+			//Code to Obscure Password in Terminal
+			termios oldt;
+			tcgetattr(STDIN_FILENO, &oldt);
+			termios newt = oldt;
+			newt.c_lflag &= ~ECHO;
+			tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+			
 			getline(cin,input_password);
+			
+			//Terminates Obscuring
+			tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 
 			Account* userLogin = hash.login(input_username,input_password);
 
@@ -64,15 +78,26 @@ int main()
 					{
 						string password = "0";
 						string passwordConfirm = "-1";
+						
+						//Code to Obscure Password in Terminal
+						termios oldt;
+						tcgetattr(STDIN_FILENO, &oldt);
+						termios newt = oldt;
+						newt.c_lflag &= ~ECHO;
+						tcsetattr(STDIN_FILENO, TCSANOW, &newt);
 
 						cout << "\nEnter new password: ";
 						getline(cin,password);
-
+						
+								
 						while(password!=passwordConfirm)
 						{
 							cout << "Please confirm new password: ";
 							getline(cin,passwordConfirm);	
 						}
+						
+						//Terminates Obscuring
+						tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 
 						string salt = pass.getSalt();
 						string hashedPass = pass.encrypt(passwordConfirm,salt);
@@ -115,6 +140,13 @@ int main()
 			
 			string password = "0";
 			string passwordConfirm = "-1";
+			
+			//Code to Obscure Password in Terminal
+			termios oldt;
+			tcgetattr(STDIN_FILENO, &oldt);
+			termios newt = oldt;
+			newt.c_lflag &= ~ECHO;
+			tcsetattr(STDIN_FILENO, TCSANOW, &newt);
 
 			cout << "\nEnter password: ";
 			getline(cin,password);
@@ -124,6 +156,9 @@ int main()
 				cout << "Please confirm password: ";
 				getline(cin,passwordConfirm);	
 			}
+			
+			//Ends Obscuring
+			tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 
 			string salt = pass.getSalt();
 			string hashedPass = pass.encrypt(passwordConfirm,salt);
