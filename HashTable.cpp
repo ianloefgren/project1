@@ -73,7 +73,7 @@ Account* HashTable::findUser(string name)
 
 	if (notFound)
 	{
-		cout << "Username not found." << endl;
+		//cout << "Username not found." << endl;
 		return NULL;
 	}	
 	else
@@ -85,7 +85,10 @@ Account* HashTable::findUser(string name)
 Account* HashTable::login(string user, string password)
 {
 	Account* foundUser = findUser(user); //find user
-	string hashed = passHash(password.append(foundUser->getSalt())); //hash inputted password with salt
+	string hashed;
+	if(foundUser!=NULL)
+		hashed = passHash(password.append(foundUser->getSalt())); //hash inputted password with salt
+	//cout << "check" << endl;
 	if(foundUser!=NULL)
 	{
 		if(hashed == foundUser->getPassword()) //if passwords match
@@ -99,7 +102,10 @@ Account* HashTable::login(string user, string password)
 		}	
 	}
 	else
+	{
+		cout << "Incorrect username or password." << endl;
 		return NULL;
+	}	
 }
 
 void HashTable::deleteUser(string name)
