@@ -39,10 +39,12 @@ Type the following commands in the terminal (make sure you are in the folder con
 This project requires the standard c library random, as well as c library time.h, which both are standard and included with c and c++ compilers.
 
 # System Requirements
-This program should run on all operating systems.
+This program wil run on all Unix systems (Linux and OSX).
 
 # Contributors
-Ates Goral, for code to generate a string of random characters.
+Ates Goral - code to generate a string of random characters.
+Tanner Quigley - code to obscure characters entered in password fields.
+Github user mediumrarecutlet - implementation of account delete function
 
 #Open Issues/Bugs
 See the issues tab for open bugs and feature requests.
