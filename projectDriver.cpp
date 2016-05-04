@@ -64,7 +64,7 @@ int main()
 				cout << "\nLogged in successfully!" << endl;
 				//userLogin->printInfo();
 
- 				while(input!="4" && input != "5")
+ 				while(input!="4")
  				{	
  					cout << "\nAccount Options" << endl;
  					cout << "---------------" << endl;
@@ -72,7 +72,6 @@ int main()
  					cout << "2. Edit message" << endl;
  					cout << "3. Print user info" << endl;
  					cout << "4. Logout" << endl;
- 					cout << "5. Delete Account" << endl;
 					getline(cin,input);
 
 					if(input=="1")
@@ -121,13 +120,6 @@ int main()
 					{
 						userLogin->logout();
 						cout << "Logged out successfully!" << endl;
-					}
-					else if(input=="5")
-					{
-						string username = userLogin -> getUsername();
-						userLogin->logout();
-						hash.deleteUser(username);
-						cout << "Deleted successfully!" << endl;
 					}
 				}	
 			}

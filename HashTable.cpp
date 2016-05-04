@@ -102,41 +102,6 @@ Account* HashTable::login(string user, string password)
 		return NULL;
 }
 
-void HashTable::deleteUser(string name)
-{
-	bool deleted = false;
-	int index = hashSum(name, tableSize); // index of user to delete
-	Account *current = hashTable[index];
-	while(deleted == false && current != NULL)
-    {
-		if(current -> getUsername() == name)
-		{
-			if(current -> prev != NULL)
-			{
-				current -> prev -> next = current -> next;
-			}
-			if(current -> next != NULL)
-			{
-				current -> next -> prev = current -> prev;
-			}
-			if(current -> next == NULL && current -> prev == NULL)
-			{
-				hashTable[index] = NULL;
-			}
-			deleted = true;
-		}
-		if(deleted)
-		{
-			delete current;
-		}
-		else
-		{
-			current = current -> next;
-		}
-		
-	}
-}
-
 
 
 
