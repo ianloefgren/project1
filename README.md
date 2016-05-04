@@ -43,7 +43,9 @@ This program wil run on all Unix systems (Linux and OSX).
 
 # Contributors
 Ates Goral - code to generate a string of random characters.
+
 Tanner Quigley - code to obscure characters entered in password fields.
+
 Github user mediumrarecutlet - implementation of account delete function
 
 #Open Issues/Bugs
