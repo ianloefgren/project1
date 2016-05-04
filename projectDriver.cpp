@@ -17,6 +17,17 @@
 
 using namespace std;
 
+string selection;
+
+string mainMenu(){
+    cout << "\n====== Main Menu ======" << endl;
+    cout << "1. Log in" << endl;
+    cout << "2. Create a new account" << endl;
+    //cout << "enter 'quit' to exit the program" << endl;
+
+    getline(cin, selection);
+    return selection;
+}
 
 int main()
 {
@@ -29,31 +40,43 @@ int main()
 
 	cout << "\nType 'quit' to quit the program" << endl;
 
-	string input = "";
+    string input = "";
+
 	while (input!="quit")
 	{
-		cout << "\n====== Main Menu ======" << endl;
-		cout << "1. Log in" << endl;
-		cout << "2. Create a new account" << endl;
-
-		getline(cin,input);
+		input = mainMenu();
 
 		if (input=="1")
 		{
 			cout << "Please enter username and password:" << endl;
 			string input_username = "";
 			string input_password = "";
+
 			getline(cin,input_username);
-			
+            /**
+            The code below, I was trying to correct a seg fault that occurs when a username is entered when
+            the username/password has not been created. I attempted to solve the issue by first checking to see if a username
+            existed prior to having to enter the password (if a username/password has already been created, you barely notice this check.
+            I created a function called main menu, so that if someone enters an unregistered username, i can call the main menu and tell
+            them to create an account as a first step. However, I realized that I was inside the condition of (if input == "1") and did
+            not have time to restructure the code to fix this issue entirely (but tried to offer an approach).
+            */
+			Account *loginCheck = hash.findUser(input_username);
+			if  (loginCheck == NULL){
+                cout << "We'll launch the main menu and you can create a new account" << endl;
+                input = mainMenu();
+                goto
+            }
+
 			//Code to Obscure Password in Terminal
 			termios oldt;
 			tcgetattr(STDIN_FILENO, &oldt);
 			termios newt = oldt;
 			newt.c_lflag &= ~ECHO;
 			tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-			
+
 			getline(cin,input_password);
-			
+
 			//Terminates Obscuring
 			tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 
@@ -65,7 +88,7 @@ int main()
 				//userLogin->printInfo();
 
  				while(input!="4" && input != "5")
- 				{	
+ 				{
  					cout << "\nAccount Options" << endl;
  					cout << "---------------" << endl;
  					cout << "1. Change password" << endl;
@@ -79,7 +102,7 @@ int main()
 					{
 						string password = "0";
 						string passwordConfirm = "-1";
-						
+
 						//Code to Obscure Password in Terminal
 						termios oldt;
 						tcgetattr(STDIN_FILENO, &oldt);
@@ -89,14 +112,14 @@ int main()
 
 						cout << "\nEnter new password: ";
 						getline(cin,password);
-						
-								
+
+
 						while(password!=passwordConfirm)
 						{
 							cout << "Please confirm new password: ";
-							getline(cin,passwordConfirm);	
+							getline(cin,passwordConfirm);
 						}
-						
+
 						//Terminates Obscuring
 						tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 
@@ -129,7 +152,7 @@ int main()
 						hash.deleteUser(username);
 						cout << "Deleted successfully!" << endl;
 					}
-				}	
+				}
 			}
 		}
 		else if(input == "2")
@@ -145,10 +168,10 @@ int main()
 				cout << "Please confirm username: ";
 				getline(cin,usernameConfirm);
 			}
-			
+
 			string password = "0";
 			string passwordConfirm = "-1";
-			
+
 			//Code to Obscure Password in Terminal
 			termios oldt;
 			tcgetattr(STDIN_FILENO, &oldt);
@@ -162,9 +185,9 @@ int main()
 			while(password!=passwordConfirm)
 			{
 				cout << "Please confirm password: ";
-				getline(cin,passwordConfirm);	
+				getline(cin,passwordConfirm);
 			}
-			
+
 			//Ends Obscuring
 			tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 
